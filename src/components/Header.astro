@@ -8,9 +8,15 @@ interface Props {
 
 const { lang, currentPath } = Astro.props;
 
-const isPlPath = currentPath.startsWith('/pl');
-const enPath = isPlPath ? currentPath.replace(/^\/pl/, '') || '/' : currentPath;
-const plPath = isPlPath ? currentPath : '/pl' + (currentPath === '/' ? '' : currentPath);
+// Explicit route map: en path → pl path
+const routeMap: Record<string, string> = {
+  '/': '/pl',
+  '/projects': '/pl/projekty',
+};
+const reverseRouteMap = Object.fromEntries(Object.entries(routeMap).map(([en, pl]) => [pl, en]));
+
+const enPath = reverseRouteMap[currentPath] ?? '/';
+const plPath = routeMap[currentPath] ?? '/pl';
 
 const navLinks =
   lang === 'en'
