@@ -44,6 +44,14 @@ public/            Static assets (favicon.svg)
 
 - **Verify live site**: `curl -sI https://lawniczak.pl` — check HTTP status, server, and cache headers. Use `curl -s https://lawniczak.pl | grep -o 'UTC · [a-f0-9]*'` to confirm deployed commit hash matches latest.
 
+## TODO
+
+- [ ] **Update site content from LinkedIn export** — LinkedIn data archive requested. When it arrives, use `Profile.csv` / `Positions.csv` to:
+  - Update bio and tagline on main page (EN + PL)
+  - Populate `src/data/projects.ts` with real projects, each tagged `type: 'work' | 'personal'` and with tech stack
+  - Add filters to the projects page: by type (work/personal) and by tech stack
+  - Update skills list in `src/pages/index.astro` and `src/pages/en/index.astro`
+
 ## Deployment
 
 - Coolify via Docker. The GitHub Actions workflow builds on every push to `main`.
