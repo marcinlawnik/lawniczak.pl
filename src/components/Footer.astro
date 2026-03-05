@@ -4,6 +4,9 @@ import { execSync } from 'child_process';
 const year = new Date().getFullYear();
 const buildDate = new Date().toISOString().split('T')[0];
 const gitCommit = (() => {
+  if (process.env.GIT_COMMIT && process.env.GIT_COMMIT !== 'unknown') {
+    return process.env.GIT_COMMIT.slice(0, 7);
+  }
   try {
     return execSync('git rev-parse --short HEAD').toString().trim();
   } catch {
