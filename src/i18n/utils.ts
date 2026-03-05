@@ -8,8 +8,8 @@ const translations = { en, pl } as const;
 
 export function getLangFromUrl(url: URL): Lang {
   const [, firstSegment] = url.pathname.split('/');
-  if (firstSegment === 'pl') return 'pl';
-  return 'en';
+  if (firstSegment === 'en') return 'en';
+  return 'pl';
 }
 
 export function useTranslations(lang: Lang) {

@@ -8,31 +8,31 @@ interface Props {
 
 const { lang, currentPath } = Astro.props;
 
-// Explicit route map: en path → pl path
+// Explicit route map: pl path → en path
 const routeMap: Record<string, string> = {
-  '/': '/pl',
-  '/projects': '/pl/projekty',
+  '/': '/en',
+  '/projekty': '/en/projects',
 };
-const reverseRouteMap = Object.fromEntries(Object.entries(routeMap).map(([en, pl]) => [pl, en]));
+const reverseRouteMap = Object.fromEntries(Object.entries(routeMap).map(([pl, en]) => [en, pl]));
 
-const enPath = reverseRouteMap[currentPath] ?? '/';
-const plPath = routeMap[currentPath] ?? '/pl';
+const enPath = routeMap[currentPath] ?? reverseRouteMap[currentPath] ?? '/en';
+const plPath = reverseRouteMap[currentPath] ?? routeMap[currentPath] ?? '/';
 
 const navLinks =
-  lang === 'en'
+  lang === 'pl'
     ? [
-        { href: '/', label: 'Home' },
-        { href: '/projects', label: 'Projects' },
+        { href: '/', label: 'Strona główna' },
+        { href: '/projekty', label: 'Projekty' },
       ]
     : [
-        { href: '/pl', label: 'Strona główna' },
-        { href: '/pl/projekty', label: 'Projekty' },
+        { href: '/en', label: 'Home' },
+        { href: '/en/projects', label: 'Projects' },
       ];
 ---
 
 <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur">
   <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-    <a href={lang === 'en' ? '/' : '/pl'} class="font-semibold text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+    <a href={lang === 'pl' ? '/' : '/en'} class="font-semibold text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
       Marcin Ławniczak
     </a>
 
@@ -48,11 +48,11 @@ const navLinks =
 
       <div class="flex items-center gap-2 border-l border-[var(--color-border)] pl-4">
         <a
-          href={lang === 'en' ? plPath : enPath}
+          href={lang === 'pl' ? enPath : plPath}
           class="text-xs font-medium uppercase tracking-wide text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
           aria-label="Switch language"
         >
-          {lang === 'en' ? 'PL' : 'EN'}
+          {lang === 'pl' ? 'EN' : 'PL'}
         </a>
         <ThemeToggle />
       </div>

@@ -9,7 +9,7 @@ export const en = {
   heroTagline:
     'I build reliable, well-crafted software. Focused on clean architecture, developer experience, and shipping things that work.',
   heroCta: 'View my projects',
-  heroCtaHref: '/projects',
+  heroCtaHref: '/en/projects',
 
   // About
   aboutHeading: 'About me',

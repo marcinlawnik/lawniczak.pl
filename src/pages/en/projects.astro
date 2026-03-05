@@ -6,7 +6,7 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslations } from '../../i18n/utils';
 import { projects } from '../../data/projects';
 
-const lang = 'pl';
+const lang = 'en';
 const t = useTranslations(lang);
 ---
 
@@ -18,8 +18,8 @@ const t = useTranslations(lang);
     <div class="grid sm:grid-cols-2 gap-6">
       {projects.map((project) => (
         <ProjectCard
-          title={project.pl.title}
-          description={project.pl.description}
+          title={project.en.title}
+          description={project.en.description}
           tags={project.tags}
           url={project.url}
           repo={project.repo}

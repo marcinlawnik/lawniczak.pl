@@ -11,7 +11,7 @@ export const pl: Record<TranslationKey, string> = {
   heroTagline:
     'Buduję niezawodne, dobrze napisane oprogramowanie. Skupiam się na czystej architekturze, doświadczeniu deweloperskim i dostarczaniu rzeczy, które działają.',
   heroCta: 'Zobacz moje projekty',
-  heroCtaHref: '/pl/projekty',
+  heroCtaHref: '/projekty',
 
   // About
   aboutHeading: 'O mnie',
