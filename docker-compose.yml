@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        SOURCE_COMMIT: ${SOURCE_COMMIT:-unknown}
+    labels:
+      - "traefik.http.middlewares.redirect-me-to-pl.redirectregex.regex=^(https?://)?lawniczak\\.me(.*)"
+      - "traefik.http.middlewares.redirect-me-to-pl.redirectregex.replacement=https://lawniczak.pl$${2}"
+      - "traefik.http.middlewares.redirect-me-to-pl.redirectregex.permanent=true"
+      - "traefik.http.routers.redirect-me-to-pl.middlewares=redirect-to-https,redirect-me-to-pl"
+      - "traefik.http.routers.redirect-me-to-pl.rule=Host(`lawniczak.me`) && PathPrefix(`/`)"
+      - "traefik.http.routers.redirect-me-to-pl.entryPoints=https"
+      - "traefik.http.routers.redirect-me-to-pl.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.redirect-me-to-pl.tls=true"
+    ports:
+      - "80"
