@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { useTranslations } from '../i18n/utils';
+import { projects } from '../data/projects';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Base title={`${t('projectsHeading')} — ${t('siteTitle')}`} description={t('siteDescription')} lang={lang}>
+  <Header lang={lang} currentPath={Astro.url.pathname} />
+  <main class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-2">{t('projectsHeading')}</h1>
+    <p class="text-[var(--color-muted)] mb-10">{t('projectsSubheading')}</p>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.en.title}
+          description={project.en.description}
+          tags={project.tags}
+          url={project.url}
+          repo={project.repo}
+        />
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Base>

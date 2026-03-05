@@ -1,0 +1,31 @@
+---
+interface Props {
+  heading: string;
+  bio: string;
+  skillsLabel: string;
+  skills: string[];
+}
+
+const { heading, bio, skillsLabel, skills } = Astro.props;
+---
+
+<section id="about" class="py-16 border-t border-[var(--color-border)]">
+  <div class="mx-auto max-w-4xl px-4">
+    <h2 class="text-2xl font-bold text-[var(--color-text)] mb-6">{heading}</h2>
+    <div class="grid sm:grid-cols-2 gap-10">
+      <p class="text-[var(--color-muted)] leading-relaxed">{bio}</p>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-3">
+          {skillsLabel}
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span class="rounded-md border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-1 text-sm text-[var(--color-text)]">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(PATH=\"/c/ProgramData/nvm/v22.19.0:$PATH\" npm run:*)"
+    ]
+  }
+}
